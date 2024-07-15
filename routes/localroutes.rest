@@ -1,0 +1,32 @@
+GET http://localhost:8000/movies 
+
+###
+
+GET http://localhost:8000/movies/6694a166f734d4de4ca89281
+
+###
+
+POST http://localhost:8000/movies  
+Content-Type: application/json
+
+{
+    "title" : "Kane",
+    "description" : "Dangerous man with multiple personalities",
+    "available_on": "Prime"
+}
+
+###
+
+DELETE http://localhost:8000/movies/6694a166f734d4de4ca89281  
+
+###
+
+PUT http://localhost:8000/movies/6694a166f734d4de4ca89281
+Content-Type: application/json
+
+{
+    "title" : "Kane",
+    "description" : "Dangerous man with multiple personalities",
+    "available_on": "Prime, Netflix"
+}
+
