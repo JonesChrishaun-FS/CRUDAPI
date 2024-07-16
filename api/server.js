@@ -20,7 +20,13 @@ db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Database Connection Established"));
 
 app.use(express.json());
-app.use("/movies", movieRouter);
+app.use("/api/v1/movies", movieRouter);
+
+app.use(express.static(path.join(__dirname, "../reactapp/build")));
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../reactapp/build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Running on ${PORT}`);
