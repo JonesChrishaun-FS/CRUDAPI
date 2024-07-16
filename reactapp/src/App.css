@@ -3,8 +3,36 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #ee710c;
   height: 150px;
   padding: 20px;
   color: white;
+}
+h1 {
+  font-size: 3rem;
+}
+p {
+  color: #fff;
+  font-size: 1.15rem;
+}
+form {
+  padding-top: 25px;
+}
+label {
+  color: #fff;
+  padding: 20px;
+}
+.link {
+  text-decoration: none;
+  font-size: 2.5rem;
+  color: #fff;
+}
+.link-styles {
+  text-decoration: none;
+  padding: 5px;
+  color: #fff;
+}
+.link-styles:hover,
+.link:hover {
+  color: #075790;
 }
