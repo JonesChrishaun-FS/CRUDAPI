@@ -1,20 +1,13 @@
 import { Link } from "react-router-dom";
 import "../App.css";
-import Signup from "./SignUp";
 
-function Home() {
+function Login() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>Movie List</h1>
         <Link className={"link-styles"} to="/dashboard">
           Dashboard
-        </Link>
-        <Link className={"link-styles"} to="/login">
-          Login
-        </Link>
-        <Link className={"link-styles"} to="/signup">
-          Signup
         </Link>
       </header>
       <p>
@@ -25,4 +18,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Login;
