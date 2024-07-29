@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
+
+import AuthService from "../services/auth.services";
+import moviesService from "../services/movies.service";
 
 function Dashboard() {
   const [movies, setMovies] = useState(null);
@@ -12,20 +15,33 @@ function Dashboard() {
     available_on: "",
   });
 
+  const navigate = useNavigate();
+
   const API_BASE =
     process.env.NODE_ENV === "development"
       ? `http://localhost:8000/api/v1`
       : process.env.REACT_APP_BASE_URL;
 
+  let ignore = false;
   useEffect(() => {
-    let ignore = false;
+    moviesService.getAllPrivateMovies().then(
+      (response) => {
+        setMovies(response.data);
+      },
+      (error) => {
+        if (error.response && error.response.status == 403) {
+          AuthService.logout();
+          navigate("/login");
+        }
+      }
+    );
 
-    if (!ignore) {
-      getMovies();
-    }
-    return () => {
-      ignore = true;
-    };
+    // if (!ignore) {
+    //   getMovies();
+    // }
+    // return () => {
+    //   ignore = true;
+    // };
   }, []);
 
   const getMovies = async () => {
