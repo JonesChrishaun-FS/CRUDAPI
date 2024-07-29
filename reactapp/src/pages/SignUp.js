@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import AuthService from "../services/auth.services";
 import "../App.css";
 
 function Signup() {
@@ -8,9 +9,17 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  handleSignup = async (e) => {
-    e.preventDefault();
+  handleSignup = async (event) => {
+    event.preventDefault();
     try {
+      await AuthService.signup(email, password).then(
+        (response) => {
+          navigate("/dashboard");
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     } catch (error) {
       console.error(error);
     }

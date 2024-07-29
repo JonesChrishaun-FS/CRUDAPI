@@ -5,16 +5,21 @@ import Dashboard from "./pages/Dashboard";
 import Movie from "./pages/Movie";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
+import authService from "./services/auth.services";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
 
   useEffect(() => {
-    const user = false;
+    const user = authService.getCurrentUser();
     if (user) {
       setCurrentUser(user);
     }
-  });
+  }, []);
+
+  const logOut = () => {
+    authService.logout();
+  };
   return (
     <div>
       <div>{currentUser ? <h2>Logged In</h2> : <h2>Logged Out</h2>}</div>
